@@ -74,14 +74,14 @@ const App: React.FC = () => {
                 <div className="space-y-4">
                    <div className="p-4 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/5">
                       <p className="text-indigo-200 text-xs font-bold uppercase tracking-widest mb-1">Activated Users</p>
-                      <p className="text-3xl font-bold">142</p>
+                      {/* Numbers removed as per request */}
                    </div>
                    
                    <div className="space-y-4 pt-2">
                      <div className="p-4 rounded-2xl bg-indigo-800/50 border border-white/10">
                         <div className="flex justify-between items-center mb-1">
                           <span className="text-indigo-100 text-xs font-medium uppercase">≥1 conversation (14d)</span>
-                          <span className="font-mono font-bold text-emerald-400">45%</span>
+                          {/* Percentage removed */}
                         </div>
                         <div className="w-full bg-indigo-950 rounded-full h-1.5 overflow-hidden">
                           <div className="bg-emerald-400 h-full rounded-full" style={{ width: '45%' }}></div>
@@ -91,7 +91,7 @@ const App: React.FC = () => {
                      <div className="p-4 rounded-2xl bg-indigo-800/50 border border-white/10">
                         <div className="flex justify-between items-center mb-1">
                           <span className="text-indigo-100 text-xs font-medium uppercase">≥2 conversations (14d)</span>
-                          <span className="font-mono font-bold text-amber-400">18%</span>
+                          {/* Percentage removed */}
                         </div>
                         <div className="w-full bg-indigo-950 rounded-full h-1.5 overflow-hidden">
                           <div className="bg-amber-400 h-full rounded-full" style={{ width: '18%' }}></div>

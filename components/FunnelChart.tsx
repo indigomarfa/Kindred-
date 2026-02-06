@@ -9,65 +9,81 @@ interface Props {
 }
 
 export const FunnelChart: React.FC<Props> = ({ steps, onStepClick, activeId }) => {
+  // Modals for Step 0 (Install -> Onboarding)
+  const [showProblemModal0, setShowProblemModal0] = useState(false);
+  const [showMetricModal0, setShowMetricModal0] = useState(false);
+  const [showHealthModal0, setShowHealthModal0] = useState(false);
+
+  // Modals for Step 1 (Onboarding -> Interests)
   const [showProblemModal, setShowProblemModal] = useState(false);
   const [showMetricModal, setShowMetricModal] = useState(false);
   const [showHealthModal, setShowHealthModal] = useState(false);
 
-  // New state for the second set of icons
+  // Modals for Step 2 (Interests -> Availability)
   const [showProblemModal2, setShowProblemModal2] = useState(false);
   const [showMetricModal2, setShowMetricModal2] = useState(false);
   const [showHealthModal2, setShowHealthModal2] = useState(false);
 
+  // Modals for Step 3 (Availability -> Profiles)
+  const [showProblemModal3, setShowProblemModal3] = useState(false);
+  const [showMetricModal3, setShowMetricModal3] = useState(false);
+
   const renderIconGroup = (
     stepId: string,
-    onHeart: () => void,
-    onStar: () => void,
-    onCross: () => void
+    onHeart?: () => void,
+    onStar?: () => void,
+    onCross?: () => void
   ) => {
     return (
       <div className="absolute z-10 left-[calc(50%+2rem)] top-1/2 -translate-y-1/2 flex items-center space-x-1">
         {/* Heart */}
-        <button 
-          onClick={onHeart}
-          className="hover:scale-110 transition-transform flex items-center justify-center outline-none shrink-0"
-        >
-          <div className="relative flex items-center justify-center w-[90px] h-[90px]">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-full w-full text-rose-500 fill-current drop-shadow-lg" viewBox="0 0 24 24">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-            <span className="absolute text-[9px] font-black text-white uppercase tracking-tighter mb-2">problems</span>
-          </div>
-        </button>
+        {onHeart && (
+          <button 
+            onClick={onHeart}
+            className="hover:scale-110 transition-transform flex items-center justify-center outline-none shrink-0"
+          >
+            <div className="relative flex items-center justify-center w-[90px] h-[90px]">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-full w-full text-rose-500 fill-current drop-shadow-lg" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span className="absolute text-[9px] font-black text-white uppercase tracking-tighter mb-2">problems</span>
+            </div>
+          </button>
+        )}
 
         {/* Star */}
-        <button 
-          onClick={onStar}
-          className="hover:scale-110 transition-transform flex items-center justify-center outline-none shrink-0"
-        >
-          <div className="relative flex items-center justify-center w-[90px] h-[90px]">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-full w-full text-amber-400 fill-current drop-shadow-lg" viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-            </svg>
-            <span className="absolute text-[9px] font-black text-amber-900 uppercase tracking-tighter" style={{ top: '51%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-              metrics
-            </span>
-          </div>
-        </button>
+        {onStar && (
+          <button 
+            onClick={onStar}
+            className="hover:scale-110 transition-transform flex items-center justify-center outline-none shrink-0"
+          >
+            <div className="relative flex items-center justify-center w-[90px] h-[90px]">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-full w-full text-amber-400 fill-current drop-shadow-lg" viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+              <span className="absolute text-[9px] font-black text-amber-900 uppercase tracking-tighter" style={{ top: '51%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                metrics
+              </span>
+            </div>
+          </button>
+        )}
 
         {/* Cross */}
-        <button 
-          onClick={onCross}
-          className="hover:scale-110 transition-transform flex items-center justify-center outline-none shrink-0"
-        >
-          <div className="relative flex items-center justify-center w-[90px] h-[90px]">
-            <div className="w-16 h-16 bg-emerald-500 rounded-lg drop-shadow-lg relative flex items-center justify-center rotate-45">
-                <div className="absolute inset-0 bg-emerald-500 rounded-lg -rotate-45"></div>
+        {onCross && (
+          <button 
+            onClick={onCross}
+            className="hover:scale-110 transition-transform flex items-center justify-center outline-none shrink-0"
+          >
+            <div className="relative flex items-center justify-center w-[90px] h-[90px]">
+              <div className="w-16 h-16 bg-emerald-500 rounded-lg drop-shadow-lg relative flex items-center justify-center rotate-45">
+                  <div className="absolute inset-0 bg-emerald-500 rounded-lg -rotate-45"></div>
+              </div>
+              <span className="absolute text-[9px] font-black text-white uppercase tracking-tighter text-center leading-none px-1">
+                Health<br/>Signs
+              </span>
             </div>
-            <span className="absolute text-[9px] font-black text-white uppercase tracking-tighter text-center leading-none px-1">
-              Health<br/>Signs
-            </span>
-          </div>
-        </button>
+          </button>
+        )}
       </div>
     );
   };
@@ -100,18 +116,6 @@ export const FunnelChart: React.FC<Props> = ({ steps, onStepClick, activeId }) =
                     </p>
                   )}
                 </div>
-                <div className="text-right flex flex-col items-end">
-                   <span className="font-mono font-bold text-lg">{step.value}</span>
-                   {index > 0 && (
-                     <span className={`text-[10px] font-bold px-1.5 rounded ${
-                        step.percentage < 30 ? 'bg-red-100 text-red-600' : 
-                        step.percentage < 60 ? 'bg-orange-100 text-orange-600' : 
-                        'bg-green-100 text-green-600'
-                     }`}>
-                        {step.percentage}% conversion
-                     </span>
-                   )}
-                </div>
               </div>
               
               {step.diagnosticColor && (
@@ -123,6 +127,14 @@ export const FunnelChart: React.FC<Props> = ({ steps, onStepClick, activeId }) =
               <div className="flex flex-col items-center relative py-2 w-full">
                 <div className="w-0.5 h-20 bg-slate-300"></div>
                 <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-slate-300"></div>
+
+                {/* Icons between Install and Onboarding */}
+                {step.id === 'install' && renderIconGroup(
+                  'install',
+                  () => setShowProblemModal0(true),
+                  () => setShowMetricModal0(true),
+                  () => setShowHealthModal0(true)
+                )}
 
                 {/* Icons between Onboarding and Interests */}
                 {step.id === 'onboarding' && renderIconGroup(
@@ -139,11 +151,90 @@ export const FunnelChart: React.FC<Props> = ({ steps, onStepClick, activeId }) =
                   () => setShowMetricModal2(true),
                   () => setShowHealthModal2(true)
                 )}
+
+                {/* Icons between Availability and Profiles */}
+                {step.id === 'availability' && renderIconGroup(
+                  'availability',
+                  () => setShowProblemModal3(true),
+                  () => setShowMetricModal3(true)
+                )}
               </div>
             )}
           </React.Fragment>
         );
       })}
+
+      {/* Modal for App Install -> Onboarding (Problems) */}
+      <Modal 
+        isOpen={showProblemModal0} 
+        onClose={() => setShowProblemModal0(false)} 
+        title="Бар'єри першого дотику" 
+        colorClass="rose"
+        icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />}
+        items={[
+          "Сприйняття застосунку за зрозумілими моделями: дейтинг/нетворкінг/пошук друзів/клуби за інтересами",
+          "Застосунок не є 'поверхневим' за сприйняттям ідеї (потрібно заглиблюватись, думати)",
+          "Страх користувача бути менш цікавим за інших або не відповідати рівню аудиторії",
+          "Користувач не може швидко відповісти, що він отримає від продукту (цінність) — абстрактного “meaningful conversations” не достатньо"
+        ]}
+      />
+
+      {/* Modal for App Install -> Onboarding (Metrics) */}
+      <Modal 
+        isOpen={showMetricModal0} 
+        onClose={() => setShowMetricModal0(false)} 
+        title="Метрики першого відкриття" 
+        colorClass="amber"
+        icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />}
+        items={[
+          "Install → First Open rate",
+          "Time to First Open",
+          "Open → Start Onboarding Conversion (початок онбордингу)",
+          "Zero-action Session Rate (закриття до початку онборбордингу)"
+        ]}
+      />
+
+      {/* Modal for App Install -> Onboarding (Health) */}
+      <Modal 
+        isOpen={showHealthModal0} 
+        onClose={() => setShowHealthModal0(false)} 
+        title="Ознаки здоров'я (Initial Touch)" 
+        colorClass="emerald"
+        icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-7.714 2.143L11 21l-2.286-6.857L1 12l7.714-2.143L11 3z" />}
+        items={[
+          "Start Onboarding Rate стабільний по сегментах",
+          "Install → Open → Start (в один день)",
+          "Low Zero-action Sessions",
+          "Низька кількість сесій з негайним закриттям додатку (менше 10 сек)"
+        ]}
+      />
+
+      {/* Modal for Availability -> Profiles (Problems) */}
+      <Modal 
+        isOpen={showProblemModal3} 
+        onClose={() => setShowProblemModal3(false)} 
+        title="Психологія перших результатів" 
+        colorClass="rose"
+        icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />}
+        items={[
+          "Нуль або майже нуль релевантних профілів одразу після сетапу часу",
+          "Незрозуміло, що відбувається далі (користувач не розуміє, чи система шукає людей чи потрібно шукати самостійно)"
+        ]}
+      />
+
+      {/* Modal for Availability -> Profiles (Metrics) */}
+      <Modal 
+        isOpen={showMetricModal3} 
+        onClose={() => setShowMetricModal3(false)} 
+        title="Метрики видачі профілів" 
+        colorClass="amber"
+        icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />}
+        items={[
+          "Availability → Profiles Seen conversion (%)",
+          "Time from Availability Set to First Profiles Seen",
+          "Immediate Exit Rate after Availability (<10–20 сек після сетапу)"
+        ]}
+      />
 
       {/* Modal Helper Component to avoid duplication */}
       <Modal 
@@ -227,58 +318,4 @@ export const FunnelChart: React.FC<Props> = ({ steps, onStepClick, activeId }) =
           "Activation rate: 55–70%",
           "Median time: < 90 секунд",
           "≥1 слот: 80% від активації",
-          "≥3 слоти: 20–30%",
-          "Slot deletions: < 10%"
-        ]}
-      />
-    </div>
-  );
-};
-
-// Reusable Modal Component
-const Modal: React.FC<{
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  items: string[];
-  colorClass: 'rose' | 'amber' | 'emerald' | 'slate';
-  icon: React.ReactNode;
-}> = ({ isOpen, onClose, title, items, colorClass, icon }) => {
-  if (!isOpen) return null;
-  
-  const colors = {
-    rose: { bg: 'bg-rose-100', text: 'text-rose-600', dot: 'bg-rose-400', btn: 'bg-slate-900 hover:bg-slate-800' },
-    amber: { bg: 'bg-amber-100', text: 'text-amber-600', dot: 'bg-amber-400', btn: 'bg-amber-600 hover:bg-amber-700' },
-    emerald: { bg: 'bg-emerald-100', text: 'text-emerald-600', dot: 'bg-emerald-400', btn: 'bg-emerald-600 hover:bg-emerald-700' },
-    slate: { bg: 'bg-slate-100', text: 'text-slate-600', dot: 'bg-slate-400', btn: 'bg-slate-900 hover:bg-slate-800' }
-  };
-  
-  const theme = colors[colorClass];
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative animate-in zoom-in-95 duration-200 text-left">
-        <button onClick={onClose} className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full text-slate-400 transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-        </button>
-        <div className="flex items-center space-x-3 mb-6">
-          <div className={`${theme.bg} p-2 rounded-xl`}>
-            <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${theme.text}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {icon}
-            </svg>
-          </div>
-          <h3 className="text-xl font-bold text-slate-800 tracking-tight">{title}</h3>
-        </div>
-        <ul className="space-y-4">
-          {items.map((text, i) => (
-            <li key={i} className="flex items-start space-x-3 text-left">
-              <span className={`flex-shrink-0 w-1.5 h-1.5 rounded-full ${theme.dot} mt-2`}></span>
-              <span className="text-slate-600 font-medium leading-relaxed">{text}</span>
-            </li>
-          ))}
-        </ul>
-        <button onClick={onClose} className={`w-full mt-8 text-white py-3 rounded-2xl font-bold transition-colors ${theme.btn}`}>Зрозуміло</button>
-      </div>
-    </div>
-  );
-};
+          "≥3 слоти: 20–3
