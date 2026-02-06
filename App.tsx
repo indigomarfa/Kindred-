@@ -17,10 +17,6 @@ const App: React.FC = () => {
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-xs">NS</span>
             </div>
-            <h1 className="text-lg font-bold tracking-tight text-slate-800">Growth Engine Funnel</h1>
-          </div>
-          <div className="text-sm text-slate-500 font-medium">
-            Seattle Early-Stage Benchmarks
           </div>
         </div>
       </header>
@@ -35,9 +31,6 @@ const App: React.FC = () => {
                 <h2 className="text-xl font-bold text-slate-800 flex items-center">
                    ЧАСОВІ МЕТРИКИ
                 </h2>
-                <div className="text-[10px] uppercase tracking-wider font-bold text-slate-400 bg-slate-100 px-2 py-1 rounded">
-                   Real-time Value Signals
-                </div>
               </div>
               <MetricsGrid metrics={TIME_METRICS} />
               
@@ -112,7 +105,7 @@ const App: React.FC = () => {
                 <div className="space-y-3">
                   <div className="flex items-start text-xs text-slate-600">
                     <span className="text-rose-500 mr-2 font-bold">🔻</span>
-                    <p>Натисніть на кроки з Drop-off для аналізу (у розширеній версії).</p>
+                    <p>Натисніть на іконки між кроками для детального аналізу бар'єрів та метрик.</p>
                   </div>
                   <div className="flex items-start text-xs text-slate-600">
                     <span className="text-indigo-600 mr-2 font-bold">⭐</span>
@@ -128,8 +121,6 @@ const App: React.FC = () => {
       {/* Persistent Legend */}
       <footer className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-slate-200 py-4 px-6 z-20">
          <div className="max-w-6xl mx-auto flex flex-wrap gap-6 items-center justify-center text-xs font-bold text-slate-500">
-            <div className="flex items-center"><div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div> КРИТИЧНИЙ DROP-OFF</div>
-            <div className="flex items-center"><div className="w-3 h-3 bg-orange-500 rounded-full mr-2"></div> ПОТРЕБУЄ ОПТИМІЗАЦІЇ</div>
             <div className="flex items-center"><div className="w-3 h-3 bg-indigo-600 rounded-sm mr-2"></div> КЛЮЧОВИЙ VALUE MOMENT</div>
          </div>
       </footer>

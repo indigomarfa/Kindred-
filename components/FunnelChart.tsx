@@ -27,6 +27,7 @@ export const FunnelChart: React.FC<Props> = ({ steps, onStepClick, activeId }) =
   // Modals for Step 3 (Availability -> Profiles)
   const [showProblemModal3, setShowProblemModal3] = useState(false);
   const [showMetricModal3, setShowMetricModal3] = useState(false);
+  const [showHealthModal3, setShowHealthModal3] = useState(false);
 
   const renderIconGroup = (
     stepId: string,
@@ -156,7 +157,8 @@ export const FunnelChart: React.FC<Props> = ({ steps, onStepClick, activeId }) =
                 {step.id === 'availability' && renderIconGroup(
                   'availability',
                   () => setShowProblemModal3(true),
-                  () => setShowMetricModal3(true)
+                  () => setShowMetricModal3(true),
+                  () => setShowHealthModal3(true)
                 )}
               </div>
             )}
@@ -233,6 +235,21 @@ export const FunnelChart: React.FC<Props> = ({ steps, onStepClick, activeId }) =
           "Availability → Profiles Seen conversion (%)",
           "Time from Availability Set to First Profiles Seen",
           "Immediate Exit Rate after Availability (<10–20 сек після сетапу)"
+        ]}
+      />
+
+      {/* Modal for Availability -> Profiles (Health) */}
+      <Modal 
+        isOpen={showHealthModal3} 
+        onClose={() => setShowHealthModal3(false)} 
+        title="Ознаки здоров'я (Discovery Activation)" 
+        colorClass="emerald"
+        icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />}
+        items={[
+          "користувач бачить одразу релевантні профілі за часовими слотами після позначення часу в календарі",
+          "переважна більшість користувачів не бачить “нуль профілів” одразу після сетапу часу",
+          "ті, хто додав availability, дійсно доходять до discovery, а не зникають",
+          "користувачі не закривають застосунок одразу після цього кроку"
         ]}
       />
 
@@ -318,4 +335,58 @@ export const FunnelChart: React.FC<Props> = ({ steps, onStepClick, activeId }) =
           "Activation rate: 55–70%",
           "Median time: < 90 секунд",
           "≥1 слот: 80% від активації",
-          "≥3 слоти: 20–3
+          "≥3 слоти: 20–30%",
+          "Slot deletions: < 10%"
+        ]}
+      />
+    </div>
+  );
+};
+
+// Reusable Modal Component
+const Modal: React.FC<{
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  items: string[];
+  colorClass: 'rose' | 'amber' | 'emerald' | 'slate';
+  icon: React.ReactNode;
+}> = ({ isOpen, onClose, title, items, colorClass, icon }) => {
+  if (!isOpen) return null;
+  
+  const colors = {
+    rose: { bg: 'bg-rose-100', text: 'text-rose-600', dot: 'bg-rose-400', btn: 'bg-slate-900 hover:bg-slate-800' },
+    amber: { bg: 'bg-amber-100', text: 'text-amber-600', dot: 'bg-amber-400', btn: 'bg-amber-600 hover:bg-amber-700' },
+    emerald: { bg: 'bg-emerald-100', text: 'text-emerald-600', dot: 'bg-emerald-400', btn: 'bg-emerald-600 hover:bg-emerald-700' },
+    slate: { bg: 'bg-slate-100', text: 'text-slate-600', dot: 'bg-slate-400', btn: 'bg-slate-900 hover:bg-slate-800' }
+  };
+  
+  const theme = colors[colorClass];
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative animate-in zoom-in-95 duration-200 text-left">
+        <button onClick={onClose} className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full text-slate-400 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        <div className="flex items-center space-x-3 mb-6">
+          <div className={`${theme.bg} p-2 rounded-xl`}>
+            <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${theme.text}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {icon}
+            </svg>
+          </div>
+          <h3 className="text-xl font-bold text-slate-800 tracking-tight">{title}</h3>
+        </div>
+        <ul className="space-y-4">
+          {items.map((text, i) => (
+            <li key={i} className="flex items-start space-x-3 text-left">
+              <span className={`flex-shrink-0 w-1.5 h-1.5 rounded-full ${theme.dot} mt-2`}></span>
+              <span className="text-slate-600 font-medium leading-relaxed">{text}</span>
+            </li>
+          ))}
+        </ul>
+        <button onClick={onClose} className={`w-full mt-8 text-white py-3 rounded-2xl font-bold transition-colors ${theme.btn}`}>Зрозуміло</button>
+      </div>
+    </div>
+  );
+};
