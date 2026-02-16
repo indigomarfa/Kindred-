@@ -68,7 +68,7 @@ export const FUNNEL_DATA: FunnelStep[] = [
 ];
 
 export const TIME_METRICS: TimeMetric[] = [
-  { id: 'match', label: 'Time to First Match', value: '18h', target: '< 24 год', warning: '> 72 год', status: 'good' },
+  { id: 'profile_open', label: 'Time to First Profile Open', value: '15s', target: '8–25 сек (median)', warning: '60 сек', status: 'good' },
   { id: 'booking', label: 'Time to First Booking', value: '4d', target: '< 3 дні', warning: '> 7 днів', status: 'warning' },
   { id: 'conversation', label: 'Time to First Conv', value: '11d', target: '≤ 7 днів', warning: '> 10-14 днів', status: 'critical' },
 ];

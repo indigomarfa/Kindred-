@@ -16,10 +16,7 @@ export const MetricsGrid: React.FC<Props> = ({ metrics }) => {
             m.status === 'warning' ? 'bg-amber-500' : 'bg-rose-500'
           }`} />
           
-          <h4 className="text-slate-500 text-sm font-medium mb-1">{m.label}</h4>
-          <div className="flex items-baseline gap-2 mb-3">
-            <span className="text-3xl font-bold text-slate-800">{m.value}</span>
-          </div>
+          <h4 className="text-slate-500 text-sm font-medium mb-4">{m.label}</h4>
           
           <div className="space-y-1 text-xs">
             <div className="flex justify-between text-slate-400">
