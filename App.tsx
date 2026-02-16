@@ -78,6 +78,14 @@ const App: React.FC = () => {
                       Viral Loop & Feedback
                     </p>
                   </div>
+
+                  <div className="relative pl-7 border-l-2 border-rose-100">
+                    <div className="absolute top-0 left-[-7px] w-3 h-3 rounded-full bg-rose-500 shadow-sm shadow-rose-200"></div>
+                    <h4 className="text-[10px] font-black text-rose-600 uppercase tracking-widest mb-1">Revenue</h4>
+                    <p className="text-[12px] text-slate-800 font-bold leading-tight">
+                      Monetization & LTV
+                    </p>
+                  </div>
                 </div>
               </div>
 

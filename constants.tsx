@@ -73,6 +73,14 @@ export const FUNNEL_DATA: FunnelStep[] = [
     percentage: 50,
     isSpecial: false
   },
+  { 
+    id: 'revenue', 
+    label: 'Revenue / Subscription', 
+    subLabel: 'PAID USER', 
+    value: 2, 
+    percentage: 33, 
+    isSpecial: true 
+  },
 ];
 
 export const TIME_METRICS: TimeMetric[] = [
