@@ -65,6 +65,14 @@ export const FUNNEL_DATA: FunnelStep[] = [
     solution: 'Quality > quantity. Explicit positioning. Feedback loop.',
     diagnosticColor: 'bg-red-600'
   },
+  { 
+    id: 'feedback', 
+    label: 'Post-conversation feedback & actions', 
+    subLabel: '(Loop & Referral)', 
+    value: 6, 
+    percentage: 50,
+    isSpecial: false
+  },
 ];
 
 export const TIME_METRICS: TimeMetric[] = [

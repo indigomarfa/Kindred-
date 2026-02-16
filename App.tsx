@@ -48,26 +48,34 @@ const App: React.FC = () => {
                   AARRR
                 </h3>
                 
-                <div className="space-y-8">
+                <div className="space-y-6">
                   <div className="relative pl-7 border-l-2 border-slate-100">
                     <div className="absolute top-0 left-[-7px] w-3 h-3 rounded-full bg-slate-300"></div>
-                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Acquisition</h4>
-                    <p className="text-xs text-slate-600 font-semibold">App Store & Onboarding Entry</p>
+                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Acquisition</h4>
+                    <p className="text-[11px] text-slate-600 font-semibold">App Store & Onboarding</p>
                   </div>
 
                   <div className="relative pl-7 border-l-2 border-blue-100">
                     <div className="absolute top-0 left-[-7px] w-3 h-3 rounded-full bg-blue-500 shadow-sm shadow-blue-200"></div>
-                    <h4 className="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-2">Activation</h4>
-                    <p className="text-[13px] text-slate-800 font-bold leading-tight">
-                      First Connection <span className="text-[11px] ml-1">⭐</span>
+                    <h4 className="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-1">Activation</h4>
+                    <p className="text-[12px] text-slate-800 font-bold leading-tight">
+                      First Connection <span className="text-[10px] ml-1">⭐</span>
                     </p>
                   </div>
 
                   <div className="relative pl-7 border-l-2 border-emerald-100">
                     <div className="absolute top-0 left-[-7px] w-3 h-3 rounded-full bg-emerald-500 shadow-sm shadow-emerald-200"></div>
-                    <h4 className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-2">Retention</h4>
-                    <p className="text-[13px] text-slate-800 font-bold leading-tight">
-                      Second Conversation <span className="text-[11px] ml-1">⭐</span>
+                    <h4 className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-1">Retention</h4>
+                    <p className="text-[12px] text-slate-800 font-bold leading-tight">
+                      Second Conversation <span className="text-[10px] ml-1">⭐</span>
+                    </p>
+                  </div>
+
+                  <div className="relative pl-7 border-l-2 border-amber-100">
+                    <div className="absolute top-0 left-[-7px] w-3 h-3 rounded-full bg-amber-500 shadow-sm shadow-amber-200"></div>
+                    <h4 className="text-[10px] font-black text-amber-600 uppercase tracking-widest mb-1">Referral</h4>
+                    <p className="text-[12px] text-slate-800 font-bold leading-tight">
+                      Viral Loop & Feedback
                     </p>
                   </div>
                 </div>
