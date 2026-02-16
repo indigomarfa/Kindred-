@@ -96,9 +96,6 @@ export const FunnelChart: React.FC<Props> = ({ steps, onStepClick, activeId }) =
                   </p>
                 )}
               </div>
-              {step.diagnosticColor && (
-                <div className={`absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow-sm animate-pulse ${step.diagnosticColor}`} />
-              )}
             </button>
           </div>
           <div className="flex justify-start" />
